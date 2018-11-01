@@ -1,0 +1,29 @@
+{
+  "name": "cordova-vue",
+  "version": "0.0.0",
+  "description": "A Cordova & Vue.js quick start boilerplate with vue-cli support",
+  "main": "meta.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CS-Tao/cordova-vue.git"
+  },
+  "keywords": [
+    "cordova",
+    "android",
+    "ios",
+    "vue",
+    "vue-cli",
+    "router",
+    "vuex",
+    "hot",
+    "reload"
+  ],
+  "author": "CS-Tao <whucstao@qq.com> (https://github.com/CS-Tao)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CS-Tao/cordova-vue/issues"
+  },
+  "devDependencies": {
+    "suppose": "^0.6.1"
+  }
+}

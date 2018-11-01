@@ -1,0 +1,23 @@
+sudo: required
+
+language: node_js
+node_js: stable
+
+install:
+  - yarn
+  - npm install -g @vue/cli @vue/cli-init cordova
+  - chmod +x ./tests/scaffold.sh ./tests/test.sh
+
+script:
+  - cd tests
+  - ./test.sh
+  # - yarn build:docs
+
+# deploy:
+#   provider: pages
+#   skip-cleanup: true
+#   local-dir: docs/dist
+#   github-token: $GH_TOKEN
+#   on:
+#     branch:
+#       - master
