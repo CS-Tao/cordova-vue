@@ -1,19 +1,19 @@
 let urls = {
   demo: {
     // Get demo
-    getRequestDemo: {
+    getRequest: {
       url () {
-        return `/getRequestDemoUrl`
+        return'/getRequest'
       },
-      regular: /\/getRequestDemoUrl/,
+      regular: /\/getRequest/,
       method: 'get'
     },
     // Post demo
-    postRequestDemo: {
+    postRequest: {
       url () {
-        return '/postRequestDemoUrl'
+        return '/postRequest'
       },
-      regular: /\/getRequestDemoUrl/,
+      regular: /\/postRequest/,
       method: 'post'
     }
   }
