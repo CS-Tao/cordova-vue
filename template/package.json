@@ -9,14 +9,10 @@
     "dev": "cordova prepare browser && cross-env PORT=3000 node build/dev-server.js",
     "build": "node build/build.js",
     "build:browser": "node build/build.js && cordova prepare browser",
-    {{#isEnabled platforms 'ios'}}
     "build:ios": "node build/build.js && cordova prepare ios && cordova build ios",
-    {{/isEnabled}}
-    {{#isEnabled platforms 'android'}}
     "build:android": "node build/build.js && cordova prepare android && cordova build android",
-    "build:genkey": "keytool -genkey -v -keystore release-key.keystore -alias {{ name }} -keyalg RSA -keysize 2048 -validity 10000",
+    "genkey:apk": "keytool -genkey -v -keystore release-key.keystore -alias {{ name }} -keyalg RSA -keysize 2048 -validity 10000",
     "release:android": "cordova prepare android && cordova build android --release -- --keystore=\"release-key.keystore\" --alias={{ name }} --storePassword=$STORE_PASSWORD --password=$STORE_PASSWORD",
-    {{/isEnabled}}
     {{#if eslint}}
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src",

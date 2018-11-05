@@ -38,7 +38,6 @@ script:
   - rm -f ./platforms/android/CordovaLib/build.gradle && mv ./.travis/cordova.patforms.android.CordovaLib.build.gradle ./platforms/android/CordovaLib/build.gradle
   - yarn release:android
   - mv ./platforms/android/app/build/outputs/apk/release/app-release.apk {{ name }}_$TRAVIS_TAG.apk
-  # - zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release.apk {{ name }}_$TRAVIS_TAG.apk
 
 deploy:
   provider: releases
