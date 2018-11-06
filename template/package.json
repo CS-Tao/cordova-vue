@@ -28,9 +28,6 @@
     {{#isEnabled platforms 'ios'}}
     "cordova-ios": "~4.5.5",
     {{/isEnabled}}
-    {{#if mockjs}}
-    "mockjs": "^1.0.1-beta3",
-    {{/if}}
     "vue": "^2.5.17"{{deps plugins}}
   },
   "devDependencies": {

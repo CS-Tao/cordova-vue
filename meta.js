@@ -29,15 +29,8 @@ module.exports = {
     plugins: {
       type: 'checkbox',
       message: 'Select which Vue plugins to install',
-      choices: ['axios', 'vue-router', 'vuex'],
-      default: ['axios', 'vue-router', 'vuex']
-    },
-    mockjs: {
-      when: 'plugins[\'axios\']',
-      type: 'confirm',
-      require: true,
-      message: 'Use mockjs for axios?',
-      default: true
+      choices: ['axios', 'mockjs', 'vue-router', 'vuex'],
+      default: ['axios', 'mockjs', 'vue-router', 'vuex']
     },
     usesass: {
         type: 'confirm',
@@ -89,7 +82,8 @@ module.exports = {
       let dependencies = {
         'axios': '^0.18.0',
         'vue-router': '^3.0.1',
-        'vuex': '^3.0.1'
+        'vuex': '^3.0.1',
+        'mockjs': '^1.0.1-beta3'
       }
 
       if (Object.keys(plugins).length > 0) output += ',\n'
@@ -111,7 +105,9 @@ module.exports = {
     'src/router/**/*': 'plugins[\'vue-router\']',
     'src/store/**/*': 'plugins[\'vuex\']',
     'src/apis/**/*': 'plugins[\'axios\']',
-    'src/apis/mock/**/*': 'mockjs',
+    'src/apis/config/*': 'plugins[\'axios\']',
+    'src/apis/demo.api.js': 'plugins[\'axios\']',
+    'src/apis/mock/**/*': 'plugins[\'mockjs\']',
     'src/styles/**/*': 'usesass',
     '.eslintignore': 'eslint',
     '.eslintrc.js': 'eslint'
