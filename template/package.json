@@ -6,11 +6,11 @@
   "license": null,
   "scripts": {
     "check": "cordova requirements",
-    "dev": "cordova prepare browser && cross-env PORT=3000 node build/dev-server.js",
+    "dev": "cross-env PORT=3000 node build/dev-server.js",
     "build": "node build/build.js",
-    "build:browser": "node build/build.js && cordova prepare browser",
-    "build:ios": "node build/build.js && cordova prepare ios && cordova build ios",
-    "build:android": "node build/build.js && cordova prepare android && cordova build android",
+    "build:browser": "cordova prepare browser",
+    "build:ios": "cordova prepare ios && cordova build ios",
+    "build:android": "cordova prepare android && cordova build android",
     "genkey:apk": "keytool -genkey -v -keystore release-key.keystore -alias {{ name }} -keyalg RSA -keysize 2048 -validity 10000",
     "release:android": "cordova prepare android && cordova build android --release -- --keystore=\"release-key.keystore\" --alias={{ name }} --storePassword=$STORE_PASSWORD --password=$STORE_PASSWORD",
     {{#if eslint}}
