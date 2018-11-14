@@ -2,9 +2,9 @@ import Vue from 'vue'
 {{#if usesass}}
 import './styles'
 {{/if}}
-{{#if mockjs}}
+{{#isEnabled plugins 'mockjs'}}
 import './apis/mock'
-{{/if}}
+{{/isEnabled}}
 
 if (window.location.protocol === 'file:' || window.location.port === '3000') {
   var cordovaScript = document.createElement('script')

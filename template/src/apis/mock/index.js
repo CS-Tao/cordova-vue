@@ -7,7 +7,7 @@ Mock.setup({
 })
 
 // Get demo
-Mock.mock(urls.demo.getRequestDemo.regular, urls.demo.getRequestDemo.method, demoMock.getRequest)
+Mock.mock(urls.demo.getRequest.regular, urls.demo.getRequest.method, demoMock.getRequest)
 
 // Post demo
-Mock.mock(urls.demo.postRequestDemo.regular, urls.demo.postRequestDemo.method, demoMock.postRequest)
+Mock.mock(urls.demo.postRequest.regular, urls.demo.postRequest.method, demoMock.postRequest)

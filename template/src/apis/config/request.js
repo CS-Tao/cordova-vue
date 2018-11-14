@@ -9,14 +9,14 @@ const request = axios.create({
 request.interceptors.request.use(config => {
   return config
 }, error => {
-  console.log(error.message)
+  // console.log(error.message)
   Promise.reject(error)
 })
 
 request.interceptors.response.use(
   response => response,
   error => {
-    console.log(error.message)
+    // console.log(error.message)
     return Promise.reject(error)
   })
 

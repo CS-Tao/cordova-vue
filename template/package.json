@@ -6,39 +6,24 @@
   "license": null,
   "scripts": {
     "check": "cordova requirements",
-    "dev": "cordova prepare browser && cross-env PORT=3000 node build/dev-server.js",
+    "dev": "cross-env PORT=3000 node build/dev-server.js",
     "build": "node build/build.js",
-    "build:browser": "node build/build.js && cordova prepare browser",
-    {{#isEnabled platforms 'ios'}}
-    "build:ios": "node build/build.js && cordova prepare ios && cordova build ios",
-    {{/isEnabled}}
-    {{#isEnabled platforms 'android'}}
-    "build:android": "node build/build.js && cordova prepare android && cordova build android",
-    "build:genkey": "keytool -genkey -v -keystore release-key.keystore -alias {{ name }} -keyalg RSA -keysize 2048 -validity 10000",
+    "build:browser": "cordova prepare browser",
+    "build:ios": "cordova prepare ios && cordova build ios",
+    "build:android": "cordova prepare android && cordova build android",
+    "genkey:apk": "keytool -genkey -v -keystore release-key.keystore -alias {{ name }} -keyalg RSA -keysize 2048 -validity 10000",
     "release:android": "cordova prepare android && cordova build android --release -- --keystore=\"release-key.keystore\" --alias={{ name }} --storePassword=$STORE_PASSWORD --password=$STORE_PASSWORD",
-    {{/isEnabled}}
     {{#if eslint}}
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src",
     "postinstall": "npm run lint:fix",
     {{/if}}
-    "prepare": "cordova prepare"
+    "preinstall": "cordova prepare"
   },
   "dependencies": {
-    {{#isEnabled platforms 'android'}}
-    "cordova-android": "~7.1.1",
-    {{/isEnabled}}
-    "cordova-browser": "~5.0.4",
-    {{#isEnabled platforms 'ios'}}
-    "cordova-ios": "~4.5.5",
-    {{/isEnabled}}
-    {{#if mockjs}}
-    "mockjs": "^1.0.1-beta3",
-    {{/if}}
     "vue": "^2.5.17"{{deps plugins}}
   },
   "devDependencies": {
-    "autoprefixer": "^9.3.1",
     "babel-core": "^6.26.3",
     {{#eslint}}
     "babel-eslint": "^8.2.3",
@@ -59,22 +44,21 @@
     "eslint-plugin-import": "^2.12.0",
     {{/if_eq}}
     {{/eslint}}
-    "babel-loader": "7.1.5",
+    "babel-loader": "^7.1.5",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
-    "chalk": "^2.4.1",
+    "cfonts": "^2.2.3",
+    "chalk": "^2.1.0",
     "connect-history-api-fallback": "^1.5.0",
-    "cross-env": "^5.2.0",
-    "css-loader": "0.28.4",
-    "escape-string-regexp": "^1.0.5",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.4",
     "escape-string-regexp": "^1.0.5",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.16.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^2.0.0",
-    "function-bind": "^1.1.1",
     "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.19.0",
     "node-loader": "^0.6.0",
@@ -86,16 +70,16 @@
     {{#if usesass}}
     "sass-loader": "^7.1.0",
     {{/if}}
-    "semver": "5.3.0",
+    "semver": "^5.6.0",
     "shelljs": "^0.8.2",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "vue-html-loader": "^1.2.4",
-    "vue-loader": "13.7.2",
-    "vue-style-loader": "3.0.1",
+    "vue-loader": "^13.7.2",
+    "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.17",
-    "webpack": "3.10.0",
-    "webpack-dev-middleware": "1.12.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-merge": "^4.1.4"
   },
@@ -103,12 +87,6 @@
     "node": ">= 8.0.0",
     "npm": ">= 5.0.0"
   },
-  "browserslist": [
-    "last 1 version",
-    "> 1%",
-    "maintained node versions",
-    "not dead"
-  ],
   "cordova": {
     "platforms": [
       {{#isEnabled platforms 'android'}}
