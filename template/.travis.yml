@@ -30,17 +30,17 @@ script:
   - cordova -v
   - yarn
   - yarn build
-  # Fix bug of https://github.com/apache/cordova-android/issues/521 temporarily.
-  - rm -f ./platforms/android/CordovaLib/build.gradle && mv ./.travis/cordova.patforms.android.CordovaLib.build.gradle ./platforms/android/CordovaLib/build.gradle
-  - yarn release:android
-  - mv ./platforms/android/app/build/outputs/apk/release/app-release.apk {{ name }}_$TRAVIS_TAG.apk
+  # # Fix bug of https://github.com/apache/cordova-android/issues/521 temporarily.
+  # - rm -f ./platforms/android/CordovaLib/build.gradle && mv ./.travis/cordova.patforms.android.CordovaLib.build.gradle ./platforms/android/CordovaLib/build.gradle
+  # - yarn release:android
+  # - mv ./platforms/android/app/build/outputs/apk/release/app-release.apk {{ name }}_$TRAVIS_TAG.apk
 
-deploy:
-  provider: releases
-  skip-cleanup: true
-  overwrite: true
-  api_key: $GH_TOKEN
-  file: 
-    - "{{ name }}_$TRAVIS_TAG.apk"
-  on:
-    tags: true
+# deploy:
+#   provider: releases
+#   skip-cleanup: true
+#   overwrite: true
+#   api_key: $GH_TOKEN
+#   file: 
+#     - "{{ name }}_$TRAVIS_TAG.apk"
+#   on:
+#     tags: true

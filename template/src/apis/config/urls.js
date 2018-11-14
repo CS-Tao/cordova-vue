@@ -3,7 +3,7 @@ let urls = {
     // Get demo
     getRequest: {
       url () {
-        return'/getRequest'
+        return '/getRequest'
       },
       regular: /\/getRequest/,
       method: 'get'

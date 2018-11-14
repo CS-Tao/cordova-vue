@@ -23,11 +23,11 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <engine name="browser" spec="~5.0.4" />
     {{#isEnabled platforms 'android'}}
     <engine name="android" spec="~7.1.1" />
     {{/isEnabled}}
     {{#isEnabled platforms 'ios'}}
     <engine name="ios" spec="~4.5.5" />
     {{/isEnabled}}
+    <engine name="browser" spec="~5.0.4" />
 </widget>
