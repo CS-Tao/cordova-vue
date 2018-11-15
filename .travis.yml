@@ -1,16 +1,33 @@
 sudo: required
 
 language: node_js
-node_js: 8
+
+node_js:
+  - 8
+  - stable
+
+env:
+  - CURRENT_TEST_ITEM=default
+  - CURRENT_TEST_ITEM=eslint-airbnb
+  - CURRENT_TEST_ITEM=eslint-none
+  - CURRENT_TEST_ITEM=no-axois
+  - CURRENT_TEST_ITEM=no-mockjs
+  - CURRENT_TEST_ITEM=no-router
+  - CURRENT_TEST_ITEM=no-vuex
+  - CURRENT_TEST_ITEM=no-router-vuex
+  - CURRENT_TEST_ITEM=no-router-vuex-axios-mockjs
+  - CURRENT_TEST_ITEM=no-android
+  - CURRENT_TEST_ITEM=no-ios
+  - CURRENT_TEST_ITEM=no-android-ios
 
 install:
-  - yarn
   - npm install -g @vue/cli @vue/cli-init cordova
-  - chmod +x ./tests/scaffold.sh ./tests/test.sh
+  - yarn
+  - chmod +x ./tests/scaffold.sh
 
 script:
   - cd tests
-  - ./test.sh
+  - ./scaffold.sh $CURRENT_TEST_ITEM
   # - yarn build:docs
 
 # deploy:
