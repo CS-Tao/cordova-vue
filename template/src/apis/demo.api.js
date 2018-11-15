@@ -1,4 +1,4 @@
-import request from './config/service'
+import request from './config/request'
 import urls from './config/urls'
 
 export default {

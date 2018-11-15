@@ -70,6 +70,14 @@ module.exports = {
           short: 'none'
         }
       ]
+    },
+    unit: {
+      type: 'confirm',
+      message: 'Setup unit tests with Karma + Mocha?'
+    },
+    e2e: {
+      type: 'confirm',
+      message: 'Setup e2e tests with Nightwatch?'
     }
   },
   helpers: {
@@ -95,10 +103,12 @@ module.exports = {
 
       return output
     },
-    testing (unit, e2e, opts) {
-      if (unit || e2e) {
-        return opts.fn(this)
+    if_or (v1, v2, options) {
+      if (v1 || v2) {
+        return options.fn(this);
       }
+
+      return options.inverse(this);
     }
   },
   filters: {
@@ -107,7 +117,9 @@ module.exports = {
     'src/apis/**/*': 'plugins[\'axios\']',
     'src/apis/config/*': 'plugins[\'axios\']',
     'src/apis/demo.api.js': 'plugins[\'axios\']',
-    'src/apis/mock/**/*': 'plugins[\'mockjs\']',
+    'src/apis/mock/demo.mock.js': 'plugins[\'mockjs\']',
+    'src/apis/mock/index.js': 'plugins[\'mockjs\']',
+    'src/apis/mock/urls.js': 'plugins[\'mockjs\'] && !plugins[\'axios\']',
     'src/styles/**/*': 'usesass',
     '.eslintignore': 'eslint',
     '.eslintrc.js': 'eslint'
