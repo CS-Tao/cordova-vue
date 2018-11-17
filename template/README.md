@@ -25,17 +25,17 @@ yarn release:android # or npm run release:android
 {{#unit}}
 
 # run unit tests
-npm run unit
+yarn unit # or npm run unit
 {{/unit}}
 {{#e2e}}
 
 # run e2e tests
-npm run e2e
+yarn e2e # or npm run e2e
 {{/e2e}}
 {{#if_or unit e2e}}
 
 # run all tests
-npm test
+yarn test # or npm test
 {{/if_or}}
 ```
 
