@@ -16,6 +16,7 @@ env:
   - CURRENT_TEST_ITEM=no-vuex
   - CURRENT_TEST_ITEM=no-router-vuex
   - CURRENT_TEST_ITEM=no-router-vuex-axios-mockjs
+  - CURRENT_TEST_ITEM=no-sass
   - CURRENT_TEST_ITEM=no-android
   - CURRENT_TEST_ITEM=no-ios
   - CURRENT_TEST_ITEM=no-android-ios

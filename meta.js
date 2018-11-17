@@ -73,11 +73,22 @@ module.exports = {
     },
     unit: {
       type: 'confirm',
-      message: 'Setup unit tests with Karma + Mocha?'
+      required: true,
+      message: 'Setup unit tests with Karma + Mocha?',
+      default: true
     },
     e2e: {
       type: 'confirm',
-      message: 'Setup e2e tests with Nightwatch?'
+      required: true,
+      message: 'Setup e2e tests with Nightwatch?',
+      default: true
+    },
+    mainlandChina: {
+      when: 'usesass || unit || e2e',
+      type: 'confirm',
+      require: true,
+      message: 'Are you in mainland China (Use taobao mirror for necessary dependencies through .npmrc)?',
+      default: false
     }
   },
   helpers: {
@@ -122,7 +133,8 @@ module.exports = {
     'src/apis/mock/urls.js': 'plugins[\'mockjs\'] && !plugins[\'axios\']',
     'src/styles/**/*': 'usesass',
     '.eslintignore': 'eslint',
-    '.eslintrc.js': 'eslint'
+    '.eslintrc.js': 'eslint',
+    '.npmrc': 'mainlandChina'
   },
   complete (data) {
     console.log([

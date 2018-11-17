@@ -31,7 +31,8 @@ function generate (key, build) {
     .when(/config/g).respond(build[8])
     .when(/unit/g).respond(build[9])
     .when(/e2e/g).respond(build[10])
-    .when(/author/g).respond(build[11])
+    .when(/mainland/g).respond(build[11])
+    .when(/author/g).respond(build[12])
   .on('error', err => {
     console.log(err.message)
   })
