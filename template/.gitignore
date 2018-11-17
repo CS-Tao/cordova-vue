@@ -1,5 +1,4 @@
 .DS_Store
-coverage
 npm-debug.log
 npm-debug.log.*
 thumbs.db
@@ -8,8 +7,20 @@ node_modules/
 !.gitkeep
 
 bin/*
-!/plugins
-!/plugins/android.json
-!/plugins/fetch.json
 plugins/*
 platforms/*
+
+{{#unit}}
+/test/unit/coverage
+{{/unit}}
+{{#e2e}}
+/test/e2e/reports
+selenium-debug.log
+{{/e2e}}
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

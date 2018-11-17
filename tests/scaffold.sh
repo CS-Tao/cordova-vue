@@ -9,7 +9,7 @@ cd "$PWD/builds/$1"
 yarn
 
 # Run webpack and build website
-yarn run build
+yarn run test
 
 # Clean up current scaffold
 cd ..

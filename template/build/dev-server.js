@@ -9,6 +9,7 @@ var { say } = require('cfonts')
 var chalk = require('chalk')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
+const isCI = process.env.CI || false
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -81,7 +82,7 @@ function greeting () {
   else if (cols > 76) text = 'cordova-|vue'
   else text = false
 
-  if (text) {
+  if (text && !isCI) {
     say(text, {
       colors: ['yellow'],
       font: 'simple3d',
@@ -90,8 +91,8 @@ function greeting () {
   } else console.log(chalk.yellow.bold('\n  cordova-vue'))
 
   var uri = 'http://localhost:' + port
+
   console.log(chalk.blue('  listening at ' + uri) + '\n')
-  console.log(chalk.hex('#3eaf7c')('  getting ready...') + '\n')
 
   // when env is testing, don't need open it
   if (process.env.NODE_ENV !== 'testing') {
@@ -99,10 +100,28 @@ function greeting () {
   }
 }
 
-module.exports = app.listen(port, function (err) {
+console.log(chalk.hex('#3eaf7c')('  getting ready...') + '\n')
+
+var server = app.listen(port, (err) => {
   if (err) {
     console.log(err)
     return
   }
-  greeting()
 })
+
+var _resolve
+var readyPromise = new Promise(resolve => {
+  _resolve = resolve
+})
+
+devMiddleware.waitUntilValid(() => {
+  greeting()
+  _resolve()
+})
+
+module.exports = {
+  ready: readyPromise,
+  close: () => {
+    server.close()
+  }
+}
