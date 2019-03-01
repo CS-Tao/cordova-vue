@@ -1,5 +1,9 @@
 import Mock from 'mockjs'
+{{#isEnabled plugins 'axios'}}
 import urls from '../config/urls'
+{{else}}
+import urls from './urls'
+{{/isEnabled}}
 import demoMock from './demo.mock'
 
 Mock.setup({

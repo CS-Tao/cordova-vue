@@ -70,6 +70,25 @@ module.exports = {
           short: 'none'
         }
       ]
+    },
+    unit: {
+      type: 'confirm',
+      required: true,
+      message: 'Setup unit tests with Karma + Mocha?',
+      default: true
+    },
+    e2e: {
+      type: 'confirm',
+      required: true,
+      message: 'Setup e2e tests with Nightwatch?',
+      default: true
+    },
+    mainlandChina: {
+      when: 'usesass || unit || e2e',
+      type: 'confirm',
+      require: true,
+      message: 'Are you in mainland China (Use taobao mirror for necessary dependencies through .npmrc)?',
+      default: false
     }
   },
   helpers: {
@@ -95,10 +114,12 @@ module.exports = {
 
       return output
     },
-    testing (unit, e2e, opts) {
-      if (unit || e2e) {
-        return opts.fn(this)
+    if_or (v1, v2, options) {
+      if (v1 || v2) {
+        return options.fn(this);
       }
+
+      return options.inverse(this);
     }
   },
   filters: {
@@ -107,10 +128,13 @@ module.exports = {
     'src/apis/**/*': 'plugins[\'axios\']',
     'src/apis/config/*': 'plugins[\'axios\']',
     'src/apis/demo.api.js': 'plugins[\'axios\']',
-    'src/apis/mock/**/*': 'plugins[\'mockjs\']',
+    'src/apis/mock/demo.mock.js': 'plugins[\'mockjs\']',
+    'src/apis/mock/index.js': 'plugins[\'mockjs\']',
+    'src/apis/mock/urls.js': 'plugins[\'mockjs\'] && !plugins[\'axios\']',
     'src/styles/**/*': 'usesass',
     '.eslintignore': 'eslint',
-    '.eslintrc.js': 'eslint'
+    '.eslintrc.js': 'eslint',
+    '.npmrc': 'mainlandChina'
   },
   complete (data) {
     console.log([

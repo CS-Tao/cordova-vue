@@ -1,16 +1,46 @@
 sudo: required
 
 language: node_js
-node_js: 8
+
+node_js:
+  - 8
+  - stable
+
+env:
+  - CURRENT_TEST_ITEM=default
+  - CURRENT_TEST_ITEM=eslint-airbnb
+  - CURRENT_TEST_ITEM=eslint-none
+  - CURRENT_TEST_ITEM=no-axois
+  - CURRENT_TEST_ITEM=no-mockjs
+  - CURRENT_TEST_ITEM=no-router
+  - CURRENT_TEST_ITEM=no-vuex
+  - CURRENT_TEST_ITEM=no-router-vuex
+  - CURRENT_TEST_ITEM=no-router-vuex-axios-mockjs
+  - CURRENT_TEST_ITEM=no-sass
+  - CURRENT_TEST_ITEM=no-android
+  - CURRENT_TEST_ITEM=no-ios
+  - CURRENT_TEST_ITEM=no-android-ios
+  - CURRENT_TEST_ITEM=no-unit
+  - CURRENT_TEST_ITEM=no-e2e
+  - CURRENT_TEST_ITEM=no-unit-e2e
 
 install:
-  - yarn
   - npm install -g @vue/cli @vue/cli-init cordova
-  - chmod +x ./tests/scaffold.sh ./tests/test.sh
+  - yarn
+
+before_script:
+  - chmod +x ./tests/scaffold.sh
+  - export CHROME_BIN=/usr/bin/google-chrome
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sudo apt-get update
+  - sudo apt-get install -y libappindicator1 fonts-liberation
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
 
 script:
   - cd tests
-  - ./test.sh
+  - ./scaffold.sh $CURRENT_TEST_ITEM
   # - yarn build:docs
 
 # deploy:
