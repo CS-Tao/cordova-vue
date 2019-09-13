@@ -6,7 +6,7 @@ export default {
   getRequest: (param1, param2) => {
     return request({
       url: urls.demo.getRequest.url(),
-      method: url.demo.getRequest.method,
+      method: urls.demo.getRequest.method,
       params: {
         param1, param2
       }
@@ -16,7 +16,7 @@ export default {
   postRequest: (param1, param2) => {
     return request({
       url: urls.demo.postRequest.url(),
-      method: url.demo.postRequest.method,
+      method: urls.demo.postRequest.method,
       data: {
         param1, param2
       }

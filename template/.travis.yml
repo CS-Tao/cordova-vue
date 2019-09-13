@@ -13,10 +13,10 @@ android:
   licenses:
     - 'android-sdk-license.*'
 
-addons:
-  apt:
-    packages:
-      - xvfb
+{{#if_or unit e2e}}
+services:
+  - xvfb
+{{/if_or}}
 
 cache:
   directories:
@@ -35,18 +35,6 @@ before_install:
 install:
   - sudo npm install -g cordova
   - yarn
-
-{{#if_or unit e2e}}
-before_script:
-  - export DISPLAY=':99.0'
-  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
-  {{#e2e}}
-  - sudo apt-get update
-  - sudo apt-get install -y libappindicator1 fonts-liberation xdg-utils
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
-  {{/e2e}}
-{{/if_or}}
 
 script:
   {{#if_or unit e2e}}
