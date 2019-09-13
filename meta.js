@@ -86,7 +86,6 @@ module.exports = {
     mainlandChina: {
       when: 'usesass || unit || e2e',
       type: 'confirm',
-      require: true,
       message: 'Are you in mainland China (Use taobao mirror for necessary dependencies through .npmrc)?',
       default: false
     }
@@ -134,7 +133,7 @@ module.exports = {
     'src/styles/**/*': 'usesass',
     '.eslintignore': 'eslint',
     '.eslintrc.js': 'eslint',
-    '.npmrc': 'mainlandChina'
+    '.npmrc': '(usesass || unit || e2e) && mainlandChina'
   },
   complete (data) {
     console.log([
