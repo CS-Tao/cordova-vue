@@ -1,6 +1,6 @@
 {
   "name": "cordova-vue",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A Cordova & Vue.js quick start boilerplate with vue-cli support",
   "main": "meta.js",
   "repository": {
